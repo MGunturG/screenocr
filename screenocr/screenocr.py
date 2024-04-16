@@ -127,7 +127,7 @@ arg_parser.add_argument(
     "--interval",
     type=int,
     default=None,
-    help="add delay before taking a screenshot",
+    help="add delay before taking a screenshot in SECONDS",
 )
 
 
