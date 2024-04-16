@@ -2,7 +2,7 @@ import io
 import sys
 import pytesseract
 
-from PyQt6 import QtCore
+from PyQt5 import QtCore
 from PIL import Image
 from logs import print_error, print_log, log_ocr_error
 
