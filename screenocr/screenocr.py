@@ -1,8 +1,9 @@
 import sys
+import time
 import argparse
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTime
 
 from logs import log_text_copied, log_ocr_fail
 from ocr_engine import check_tesseract_environment, get_ocr_result
@@ -97,6 +98,9 @@ class SnippingTool(QtWidgets.QWidget):
         
 
 class SingleSnip(SnippingTool):
+    '''
+    take single snip without delay or interval
+    '''
     def mouseReleaseEvent(self, event):
         if self.start == self.end:
             return super().mouseReleaseEvent(event)
@@ -110,6 +114,7 @@ class SingleSnip(SnippingTool):
 
         QtWidgets.QApplication.quit()
 
+
 arg_parser = argparse.ArgumentParser(description=__doc__)
 arg_parser.add_argument(
     "langs",
@@ -122,7 +127,7 @@ arg_parser.add_argument(
     "--interval",
     type=int,
     default=None,
-    help="select a screen region then take snipshot every INTERVAL milliseconds",
+    help="add delay before taking a screenshot",
 )
 
 
@@ -135,6 +140,10 @@ def take_snipshot(langs, interval):
     window = QtWidgets.QMainWindow()
 
     if interval == None:
+        snip = SingleSnip(window, langs)
+        snip.show()
+    else:
+        time.sleep(interval)
         snip = SingleSnip(window, langs)
         snip.show()
 
