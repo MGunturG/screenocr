@@ -3,11 +3,12 @@ import time
 import argparse
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt, QTime
+from PyQt5.QtCore import Qt
 
 from logs import log_text_copied, log_ocr_fail
 from ocr_engine import check_tesseract_environment, get_ocr_result
 from clipboard import copy_to_clipboard
+from notification import show_notif
 
 
 class SnippingTool(QtWidgets.QWidget):
@@ -109,6 +110,7 @@ class SingleSnip(SnippingTool):
         if ocr_result:
             copy_to_clipboard(ocr_result)
             log_text_copied(ocr_result)
+            show_notif(appid='ScreenOCR', title='Text copied!', message=ocr_result)
         else:
             log_ocr_fail()
 
