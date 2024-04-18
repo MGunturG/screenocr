@@ -6,6 +6,7 @@ from PyQt5 import QtCore
 from PIL import Image
 from logs import print_error, print_log, log_ocr_error
 
+
 def check_tesseract_environment():
     try:
         version_number = pytesseract.get_tesseract_version()

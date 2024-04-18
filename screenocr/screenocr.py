@@ -8,7 +8,6 @@ import clipman
 
 from logs import log_text_copied, log_ocr_fail
 from ocr_engine import check_tesseract_environment, get_ocr_result
-# from clipboard import copy_to_clipboard
 from notification import show_notif
 
 
@@ -109,7 +108,6 @@ class SingleSnip(SnippingTool):
         
         ocr_result = self.snipOcr()
         if ocr_result:
-            # copy_to_clipboard(ocr_result)
             clipman.init()
             clipman.set(ocr_result)
             log_text_copied(ocr_result)
