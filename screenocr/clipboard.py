@@ -12,4 +12,4 @@ def copy_to_clipboard(string_to_copy):
         stdin=subprocess.PIPE,
         close_fds=True
     )
-    process.communicate(input=string_to_copy.encode('Shift_JIS'))
+    process.communicate(input=string_to_copy.encode('UTF-8'))
